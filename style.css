@@ -65,16 +65,18 @@ body {
 }
 
 .search-form > button:hover {
-  background-color: #ddd;
+  background-color: #aaa;
 }
 
 /* Search Results */
 
 .search-results {
-  border: 1px solid #eee;
+  border: 1px solid #070707;
   padding: 0.6rem;
-  margin: 1rem 0.2rem;
+  margin: 1rem auto;
   height: auto;
+  background-image: linear-gradient(to right, #dddddd, #bbbbbb);
+  color: #070707;
 }
 
 .search-results .search-info {
@@ -128,7 +130,7 @@ body {
 
 .search-results .search-info .see-ticket-btn:hover,
 .search-results .search-info .expand-btn:hover {
-  background-color: #ddd;
+  background-color: #aaa;
 }
 /* Lineup Artists */
 .expand-content h3,
@@ -179,7 +181,7 @@ body {
 }
 
 .lineup-content .artist-img-info .view-more-artist:hover {
-  background-color: #ddd;
+  background-color: #aaa;
 }
 
 /* Venue Info */
