@@ -6,14 +6,15 @@
   box-sizing: border-box;
 }
 
-h2,
-h3 {
+h2 {
   padding: 1rem;
   font-size: 2rem;
   margin: 1rem 0;
 }
 h3 {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
+  margin: 0.5rem 0;
+  padding: 0.5rem;
 }
 
 body {
@@ -67,6 +68,7 @@ body {
 .search-results {
   border: 1px solid #eee;
   padding: 0.6rem;
+  margin: 1rem 0.2rem;
 }
 
 .search-results .search-info {
@@ -103,6 +105,7 @@ body {
   cursor: pointer;
   outline: none;
   border: 0.5px solid #0f0f0f;
+  transition: background-color 0.3s ease-in;
 }
 
 .search-results .search-info .see-ticket-btn a {
@@ -115,4 +118,88 @@ body {
   height: 2rem;
   align-self: center;
   flex: 1;
+}
+
+.search-results .search-info .see-ticket-btn:hover,
+.search-results .search-info .expand-btn:hover {
+  background-color: #ddd;
+}
+/* Lineup Artists */
+.expand-content h3,
+.venue-info h3 {
+  border-bottom: 1px solid #eee;
+  padding-left: 0;
+}
+
+.lineup-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.lineup-content .artist-img-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.lineup-content .artist-img-info .artist-img {
+  height: 200px;
+  width: 200px;
+  border-radius: 50%;
+  margin: 0.5rem 0;
+}
+
+.lineup-content .artist-img-info .artist-name {
+  padding: 0.5rem;
+  margin: 0.5rem 0;
+}
+
+.lineup-content .artist-img-info .view-more-artist {
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  outline: none;
+  border: 0.5px solid #0f0f0f;
+  transition: background-color 0.3s ease-in;
+}
+
+.lineup-content .artist-img-info .view-more-artist a {
+  text-decoration: none;
+  color: #026add;
+}
+
+.lineup-content .artist-img-info .view-more-artist:hover {
+  background-color: #ddd;
+}
+
+/* Venue Info */
+.venue-info .icons {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+.venue-info .icons i {
+  padding: 1rem;
+  margin: 1rem;
+  border-radius: 50%;
+  border: 1px solid #fff;
+}
+.venue-info .icons p {
+  padding: 0.5rem;
+  margin: 0.5rem 0;
+  border-bottom: 1px dotted #fff;
+}
+
+.venue-info .icons p strong,
+.venue-info .icons p em {
+  display: block;
+  margin: 0.5rem 0;
 }
