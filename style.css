@@ -1,0 +1,118 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+h2,
+h3 {
+  padding: 1rem;
+  font-size: 2rem;
+  margin: 1rem 0;
+}
+h3 {
+  font-size: 1.5rem;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-image: linear-gradient(to right, #026add, #0360ca);
+  color: #fff;
+  line-height: 1.2;
+}
+
+/* Search form */
+.search-form {
+  display: flex;
+  flex-direction: column;
+  width: 352px;
+  margin-bottom: 1rem;
+}
+
+.search-form > input,
+.search-form > button {
+  padding: 0.6rem;
+  margin-bottom: 0.6rem;
+  border: 1px solid #0f0f0f;
+  outline: none;
+}
+
+.search-form > input:focus {
+  background-color: #eee;
+  color: #026add;
+}
+
+.search-form > button {
+  color: #026add;
+  font-size: 1rem;
+  cursor: pointer;
+  background-color: #eee;
+
+  transition: background-color 0.3s ease-in;
+}
+
+.search-form > button:hover {
+  background-color: #ddd;
+}
+
+/* Search Results */
+
+.search-results {
+  border: 1px solid #eee;
+  padding: 0.6rem;
+}
+
+.search-results .search-info {
+  font-size: 0.8rem;
+  display: flex;
+}
+
+.search-results .search-info > div {
+  padding: 0.5rem;
+  margin: 0.5rem;
+}
+
+.search-results .search-info .date-info {
+  flex: 1;
+}
+
+.search-results .search-info .location-info {
+  flex: 5;
+}
+
+.search-results .search-info .date-info > p,
+.search-results .search-info .location-info > p {
+  margin: 0.5rem 0;
+}
+
+.search-results .search-info .see-ticket-btn {
+  align-self: center;
+  padding: 0.5rem;
+  flex: 3;
+}
+
+.search-results .search-info .see-ticket-btn,
+.search-results .search-info .expand-btn {
+  cursor: pointer;
+  outline: none;
+  border: 0.5px solid #0f0f0f;
+}
+
+.search-results .search-info .see-ticket-btn a {
+  text-decoration: none;
+  color: #026add;
+}
+
+.search-results .search-info .expand-btn {
+  margin: 0 0.2rem;
+  height: 2rem;
+  align-self: center;
+  flex: 1;
+}
