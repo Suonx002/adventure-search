@@ -46,7 +46,7 @@ body {
 .search-form > button {
   padding: 0.6rem;
   margin-bottom: 0.6rem;
-  border: 1px solid #eee;
+  border: 3px solid #eee;
   outline: none;
 }
 
@@ -71,7 +71,7 @@ body {
 /* Search Results */
 
 .search-results {
-  border: 1px solid #eee;
+  border: 3px solid #eee;
   padding: 0.6rem;
   margin: 1rem auto;
   height: auto;
@@ -82,6 +82,7 @@ body {
 
 .search-results .search-info {
   font-size: 0.8rem;
+  border-bottom: 3px solid #fff;
   display: flex;
 }
 
@@ -113,7 +114,7 @@ body {
 .search-results .search-info .expand-btn {
   cursor: pointer;
   outline: none;
-  border: 0.5px solid #eee;
+  border: 3px solid #eee;
   transition: background-color 0.3s ease-in;
 }
 
@@ -134,14 +135,21 @@ body {
 .search-results .search-info .expand-btn:hover {
   background-color: #aaa;
 }
+
 /* Lineup Artists */
+.search-content {
+  margin: 1rem 0;
+  border: 6px solid #fff;
+}
+
 .expand-content h3,
 .venue-info h3 {
   padding-left: 0;
 }
 
 .lineup-content {
-  border: 1px solid #eee;
+  border-top: 3px solid #eee;
+  border-bottom: 3px solid #eee;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -162,6 +170,7 @@ body {
   width: 200px;
   border-radius: 50%;
   margin: 0.5rem 0;
+  border: 3px solid #fff;
 }
 
 .lineup-content .artist-img-info .artist-name {
@@ -173,7 +182,7 @@ body {
   padding: 0.5rem 1rem;
   cursor: pointer;
   outline: none;
-  border: 0.5px solid #eee;
+  border: 3px solid #eee;
   transition: background-color 0.3s ease-in;
 }
 
@@ -189,7 +198,8 @@ body {
 /* Venue Info */
 
 .venue-info {
-  border: 1px solid #eee;
+  border-top: 3px solid #eee;
+  border-bottom: 3px solid #eee;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -208,7 +218,7 @@ body {
   padding: 1rem;
   margin: 1rem;
   border-radius: 50%;
-  border: 1px solid #fff;
+  border: 3px solid #fff;
 }
 .venue-info .icons p {
   padding: 0.5rem;
