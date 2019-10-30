@@ -77,12 +77,12 @@ body {
   height: auto;
   background-image: linear-gradient(to right, #dddddd, #bbbbbb);
   color: #070707;
-  /* display: none; */
+  display: none;
 }
 
 .search-results .search-info {
   font-size: 0.8rem;
-  border-bottom: 3px solid #fff;
+  /* border-bottom: 3px solid #fff; */
   display: flex;
 }
 
@@ -131,6 +131,10 @@ body {
   flex: 1;
 }
 
+/* .search-results .search-info .expand-btn.open {
+  display: none;
+} */
+
 .search-results .search-info .see-ticket-btn:hover,
 .search-results .search-info .expand-btn:hover {
   background-color: #aaa;
@@ -139,17 +143,28 @@ body {
 /* Lineup Artists */
 .search-content {
   margin: 1rem 0;
-  border: 6px solid #fff;
+  border: 3px solid #fff;
 }
+
+/* set as display none initial */
+/* .expand-content,
+.venue-content {
+  display: none;
+}
+
+.expand-content.open,
+.venue-content.open {
+  display: block;
+} */
 
 .expand-content h3,
 .venue-info h3 {
-  padding-left: 0;
+  padding-left: 1rem;
 }
 
 .lineup-content {
   border-top: 3px solid #eee;
-  border-bottom: 3px solid #eee;
+  /* border-bottom: 3px solid #eee; */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -199,7 +214,7 @@ body {
 
 .venue-info {
   border-top: 3px solid #eee;
-  border-bottom: 3px solid #eee;
+  /* border-bottom: 3px solid #eee; */
   display: flex;
   flex-direction: column;
   justify-content: center;

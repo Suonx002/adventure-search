@@ -3,35 +3,44 @@ const searchForm = document.querySelector('.search-form');
 const searchInput = document.querySelector('.search-input');
 const cityInput = document.querySelector('.city-input');
 const searchResults = document.querySelector('.search-results');
-const expandBtn = document.querySelector('.expand-btn');
 
 // Search form listeners
 searchForm.addEventListener('submit', searchSubmit);
 // Listener for expand button
-searchResults.addEventListener('click', expandBtnClicked);
+// searchResults.addEventListener('click', expandBtnClicked);
 
 function searchSubmit(e) {
   const api_key = 'iys9kXU5AGU12MWqoGc7LkpmZXDAhTkd';
   //cors
   const cors = 'https://cors-anywhere.herokuapp.com/';
-  //fetch data from ticketmaster api
-  fetch(
-    `${cors}https://app.ticketmaster.com/discovery/v2/events.json?keyword=illenium&city=minneapolis&apikey=${api_key}`,
-    { mod: 'no-cors' }
-  )
-    .then(res => res.json())
-    .then(data => apiDataResults(data._embedded.events));
+
+  if (searchInput.value === '' && cityInput.value === '') {
+    alert('Please double check your typing...');
+  } else {
+    searchInputLowerCase = searchInput.value.toLowerCase();
+    cityInputLowerCase = cityInput.value.toLowerCase();
+    //fetch data from ticketmaster api
+    fetch(
+      `${cors}https://app.ticketmaster.com/discovery/v2/events.json?keyword=${searchInputLowerCase}&city=${cityInputLowerCase}&apikey=${api_key}`,
+      {}
+    )
+      .then(res => res.json())
+      .then(data => apiDataResults(data._embedded.events))
+      .catch(err => {
+        alert('There is no data with the following search...');
+      });
+  }
   e.preventDefault();
 }
 
 function apiDataResults(data) {
+  searchResults.style.display = 'block';
   console.log(data);
   let totalOutput = '';
 
   //loop through each search results
   data.forEach(artist => {
     console.log(artist);
-
     //lineup-content section
     const searchOutput = displaySearchInfo(artist);
 
@@ -47,6 +56,7 @@ function apiDataResults(data) {
       artistOutput,
       venueOutput
     );
+
     totalOutput += combinedOutput;
   });
 
@@ -54,11 +64,14 @@ function apiDataResults(data) {
 }
 
 //Expand button
-function expandBtnClicked(e) {
-  if (e.target.classList.contains('expand-btn')) {
-    e.target.classList.contains('expand-btn').style.display = 'none';
-  }
-}
+// function expandBtnClicked(e) {
+//   const expandContent = document.querySelector('.expand-content');
+//   const venueContent = document.querySelector('.venue-content');
+
+//   if (e.target.classList.contains('expand-btn')) {
+//     e.target.parentNode.nextSibling.style.display = 'block';
+//   }
+// }
 
 function displaySearchInfo(artist) {
   //search info section of HTML
@@ -68,8 +81,8 @@ function displaySearchInfo(artist) {
   const location = artist._embedded.venues[0];
   const tourTitle = artist.name;
   const seeTicketUrl = artist.url;
-  return `
-      
+
+  const output = ` 
   <div class="date-info">
     <p class="month">${localDate[1]} <span class="day">${
     localDate[2]
@@ -86,12 +99,13 @@ function displaySearchInfo(artist) {
     <p class="artist-title"><em>${tourTitle}</em></p>
   </div>
 
-  <button class="see-ticket-btn"><a href="${seeTicketUrl}">See Tickets</a></button>
+  <button class="see-ticket-btn"><a href="${seeTicketUrl}" target="_blank">See Tickets</a></button>
   <button class="expand-btn">
-    <a href="#"><i class="fas fa-chevron-down"></i></a>
+    <a href="#"><i class="fas fa-chevron-down"></i> </a>
   </button>
-
 `;
+
+  return output;
 }
 
 function displayArtistOutput(artist) {
@@ -106,7 +120,7 @@ function displayArtistOutput(artist) {
       />
       <p class="artist-name">${artistName.name}</p>
       <button class="view-more-artist">
-        <a href="${artistName.url}"> View More</a>
+        <a href="${artistName.url}" target="_blank"> View More</a>
       </button>
     </div>
   `;
