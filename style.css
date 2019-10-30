@@ -77,6 +77,7 @@ body {
   height: auto;
   background-image: linear-gradient(to right, #dddddd, #bbbbbb);
   color: #070707;
+  /* display: none; */
 }
 
 .search-results .search-info {
@@ -250,7 +251,8 @@ body {
   * {
     font-size: 17px;
   }
-  .search-form {
+  .search-form,
+  .search-results {
     width: 600px;
   }
   .search-results .search-info .expand-btn {
@@ -284,7 +286,6 @@ body {
 
   .search-form {
     flex-direction: row;
-
     width: 800px;
   }
   .search-form .search-input,
@@ -306,5 +307,20 @@ body {
   .lineup-content .artist-img-info,
   .venue-info .icons {
     width: 30%;
+  }
+  .search-results {
+    width: 900px;
+  }
+}
+
+@media screen and (min-width: 1050px) {
+  .search-results {
+    width: 1000px;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .search-results {
+    width: 1100px;
   }
 }
