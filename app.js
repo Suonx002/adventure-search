@@ -9,6 +9,12 @@ searchForm.addEventListener('submit', searchSubmit);
 // Listener for expand button
 // searchResults.addEventListener('click', expandBtnClicked);
 
+//clear inputs
+function clearInput() {
+  document.querySelector('.search-input').value = '';
+  document.querySelector('.city-input').value = '';
+}
+
 function searchSubmit(e) {
   const api_key = 'iys9kXU5AGU12MWqoGc7LkpmZXDAhTkd';
   //cors
@@ -34,9 +40,11 @@ function searchSubmit(e) {
 }
 
 function apiDataResults(data) {
+  clearInput();
   searchResults.style.display = 'block';
-  console.log(data);
   let totalOutput = '';
+  //clear html search
+  searchResults.innerHTML = '';
 
   //loop through each search results
   data.forEach(artist => {
