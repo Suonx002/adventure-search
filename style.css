@@ -46,7 +46,7 @@ body {
 .search-form > button {
   padding: 0.6rem;
   margin-bottom: 0.6rem;
-  border: 1px solid #0f0f0f;
+  border: 1px solid #eee;
   outline: none;
 }
 
@@ -71,7 +71,7 @@ body {
 /* Search Results */
 
 .search-results {
-  border: 1px solid #070707;
+  border: 1px solid #eee;
   padding: 0.6rem;
   margin: 1rem auto;
   height: auto;
@@ -90,7 +90,7 @@ body {
 }
 
 .search-results .search-info .date-info {
-  flex: 1;
+  flex: 2;
 }
 
 .search-results .search-info .location-info {
@@ -112,11 +112,12 @@ body {
 .search-results .search-info .expand-btn {
   cursor: pointer;
   outline: none;
-  border: 0.5px solid #0f0f0f;
+  border: 0.5px solid #eee;
   transition: background-color 0.3s ease-in;
 }
 
-.search-results .search-info .see-ticket-btn a {
+.search-results .search-info .see-ticket-btn a,
+.search-results .search-info .expand-btn a {
   text-decoration: none;
   color: #026add;
 }
@@ -171,7 +172,7 @@ body {
   padding: 0.5rem 1rem;
   cursor: pointer;
   outline: none;
-  border: 0.5px solid #0f0f0f;
+  border: 0.5px solid #eee;
   transition: background-color 0.3s ease-in;
 }
 
@@ -222,6 +223,10 @@ body {
 
 /* responsive */
 @media screen and (min-width: 450px) {
+  h2,
+  h3 {
+    text-align: left;
+  }
   .search-results .search-info .date-info {
     flex: 1;
   }
