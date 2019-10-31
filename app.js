@@ -6,8 +6,9 @@ const searchResults = document.querySelector('.search-results');
 
 // Search form listeners
 searchForm.addEventListener('submit', searchSubmit);
+
 // Listener for expand button
-searchResults.addEventListener('click', expandBtnClicked);
+// document.addEventListener('click', expandBtnClicked);
 
 //clear inputs
 function clearInput() {
@@ -72,15 +73,9 @@ function apiDataResults(data) {
 }
 
 //Expand button
-function expandBtnClicked(e) {
-  const expandContent = document.querySelector('.expand-content');
-  const venueContent = document.querySelector('.venue-content');
+// function expandBtnClicked(e) {
 
-  if (e.target.classList.contains('expand-btn')) {
-    expandContent.style.display = 'block';
-    venueContent.style.display = 'block';
-  }
-}
+// }
 
 function displaySearchInfo(artist) {
   //search info section of HTML
@@ -107,6 +102,7 @@ function displaySearchInfo(artist) {
   const location = artist._embedded.venues[0];
   const tourTitle = artist.name;
   const seeTicketUrl = artist.url;
+
   //military time to standard via stackoverflow
   const localTime = artist.dates.start.localTime.split(':');
   const hours = localTime[0];
