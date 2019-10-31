@@ -147,7 +147,7 @@ body {
 }
 
 /* set as display none initial */
-/* .expand-content,
+.expand-content,
 .venue-content {
   display: none;
 }
@@ -155,7 +155,7 @@ body {
 .expand-content.open,
 .venue-content.open {
   display: block;
-} */
+}
 
 .expand-content h3,
 .venue-info h3 {

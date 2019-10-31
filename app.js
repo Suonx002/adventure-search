@@ -7,7 +7,7 @@ const searchResults = document.querySelector('.search-results');
 // Search form listeners
 searchForm.addEventListener('submit', searchSubmit);
 // Listener for expand button
-// searchResults.addEventListener('click', expandBtnClicked);
+searchResults.addEventListener('click', expandBtnClicked);
 
 //clear inputs
 function clearInput() {
@@ -20,10 +20,8 @@ function searchSubmit(e) {
   //cors
   const cors = 'https://cors-anywhere.herokuapp.com/';
 
-  if (searchInput.value === '' && cityInput.value === '') {
-    alert('Please double check your typing...');
-  } else {
-    searchInputLowerCase = searchInput.value.toLowerCase();
+  if (searchInput.value !== '' && cityInput.value !== '') {
+    searchInputLowerCase = searchInput.value.toLowerCase().replace(' ');
     cityInputLowerCase = cityInput.value.toLowerCase();
     //fetch data from ticketmaster api
     fetch(
@@ -35,6 +33,8 @@ function searchSubmit(e) {
       .catch(err => {
         alert('There is no data with the following search...');
       });
+  } else {
+    alert('Please double check your typing...');
   }
   e.preventDefault();
 }
@@ -72,31 +72,57 @@ function apiDataResults(data) {
 }
 
 //Expand button
-// function expandBtnClicked(e) {
-//   const expandContent = document.querySelector('.expand-content');
-//   const venueContent = document.querySelector('.venue-content');
+function expandBtnClicked(e) {
+  const expandContent = document.querySelector('.expand-content');
+  const venueContent = document.querySelector('.venue-content');
 
-//   if (e.target.classList.contains('expand-btn')) {
-//     e.target.parentNode.nextSibling.style.display = 'block';
-//   }
-// }
+  if (e.target.classList.contains('expand-btn')) {
+    expandContent.style.display = 'block';
+    venueContent.style.display = 'block';
+  }
+}
 
 function displaySearchInfo(artist) {
   //search info section of HTML
   //ex: 2019-11-11 split into array by '-' (year,month,day)
+  const month = [
+    'Jan',
+    'Feb',
+    'Mar',
+    'Apr',
+    'May',
+    'Jun',
+    'Jul',
+    'Aug',
+    'Sep',
+    'Oct',
+    'Nov',
+    'Dec'
+  ];
+
+  const day = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+
+  const dayOfWeek = new Date(artist.dates.start.localDate);
   const localDate = artist.dates.start.localDate.split('-');
-  const localTime = artist.dates.start.localTime;
   const location = artist._embedded.venues[0];
   const tourTitle = artist.name;
   const seeTicketUrl = artist.url;
+  //military time to standard via stackoverflow
+  const localTime = artist.dates.start.localTime.split(':');
+  const hours = localTime[0];
+  const minutes = localTime[1];
+  const seconds = localTime[2];
+  let time = `${hours > 12 ? hours - 12 : hours}:${minutes}:${seconds} ${
+    hours >= 12 ? 'PM' : 'AM'
+  }`;
 
   const output = ` 
   <div class="date-info">
-    <p class="month">${localDate[1]} <span class="day">${
+    <p class="month">${month[localDate[1] - 1]} <span class="day">${
     localDate[2]
   }</span></p>
     <p class="day-of-week">
-      ${localDate[2]}- <span class="time-start">${localTime}</span>
+      ${day[dayOfWeek.getDay() + 1]} - <span class="time-start">${time}</span>
     </p>
   </div>
 
