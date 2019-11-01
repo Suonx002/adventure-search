@@ -3,12 +3,13 @@ const searchForm = document.querySelector('.search-form');
 const searchInput = document.querySelector('.search-input');
 const cityInput = document.querySelector('.city-input');
 const searchResults = document.querySelector('.search-results');
+let id = 0;
 
 // Search form listeners
 searchForm.addEventListener('submit', searchSubmit);
 
 // Listener for expand button
-// document.addEventListener('click', expandBtnClicked);
+document.addEventListener('click', expandBtnClicked);
 
 //clear inputs
 function clearInput() {
@@ -73,9 +74,96 @@ function apiDataResults(data) {
 }
 
 //Expand button
-// function expandBtnClicked(e) {
+function expandBtnClicked(e) {
+  // for expand btn area
+  if (e.target.classList.contains('expand-btn')) {
+    const currentId = e.target.parentNode.id;
+    const searchInfos = document.querySelectorAll('.search-info');
+    searchInfos.forEach(item => {
+      if (item.id === currentId) {
+        const expandContent = e.target.parentNode.nextSibling.nextSibling;
+        const venueContent =
+          e.target.parentNode.nextSibling.nextSibling.nextSibling.nextSibling;
+        //expand content
+        if (expandContent.classList.contains('expand-content')) {
+          if (
+            expandContent.style.display === '' ||
+            expandContent.style.display === 'none'
+          ) {
+            expandContent.style.display = 'block';
+          } else {
+            expandContent.style.display = 'none';
+          }
+        }
+        if (venueContent.classList.contains('venue-content')) {
+          if (
+            venueContent.style.display === '' ||
+            venueContent.style.display === 'none'
+          ) {
+            venueContent.style.display = 'block';
+          } else {
+            venueContent.style.display = 'none';
+          }
+        }
 
-// }
+        // e.target.parentNode.nextSibling.nextSibling;
+        // e.target.parentNode.nextSibling.nextSibling.nextSibling.nextSibling;
+      }
+    });
+
+    console.log(
+      e.target.parentNode.nextSibling.nextSibling.nextSibling.nextSibling.style
+        .display
+    );
+  }
+  //for <a></a> tag inside expand btn (same logic)
+  if (e.target.classList.contains('fa-chevron-down')) {
+    // console.log(
+    //   e.target.parentNode.parentNode.parentNode.nextSibling.nextSibling
+    // );
+    // console.log(
+    //   e.target.parentNode.parentNode.parentNode.nextSibling.nextSibling
+    //     .nextSibling.nextSibling
+    // );
+    const currentId = e.target.parentNode.parentNode.parentNode.id;
+    const searchInfos = document.querySelectorAll('.search-info');
+    searchInfos.forEach(item => {
+      if (item.id === currentId) {
+        const expandContent =
+          e.target.parentNode.parentNode.parentNode.nextSibling.nextSibling;
+        const venueContent =
+          e.target.parentNode.parentNode.parentNode.nextSibling.nextSibling
+            .nextSibling.nextSibling;
+        console.log(expandContent);
+        console.log(venueContent);
+        //expand content
+        if (expandContent.classList.contains('expand-content')) {
+          if (
+            expandContent.style.display === '' ||
+            expandContent.style.display === 'none'
+          ) {
+            expandContent.style.display = 'block';
+          } else {
+            expandContent.style.display = 'none';
+          }
+        }
+
+        if (venueContent.classList.contains('venue-content')) {
+          if (
+            venueContent.style.display === '' ||
+            venueContent.style.display === 'none'
+          ) {
+            venueContent.style.display = 'block';
+          } else {
+            venueContent.style.display = 'none';
+          }
+        }
+        // e.target.parentNode.nextSibling.nextSibling;
+        // e.target.parentNode.nextSibling.nextSibling.nextSibling.nextSibling;
+      }
+    });
+  }
+}
 
 function displaySearchInfo(artist) {
   //search info section of HTML
@@ -236,9 +324,10 @@ function displayVenueOutput(venue) {
 }
 
 function combinedTotalOutput(searchOutput, artistOutput, venueOutput) {
+  id++;
   return `
     <div class="search-content">
-      <div class="search-info">
+      <div class="search-info" id="${id}">
         ${searchOutput}
       </div>
       <div class="expand-content">

@@ -152,10 +152,10 @@ body {
   display: none;
 }
 
-.expand-content.open,
+/* .expand-content.open,
 .venue-content.open {
   display: block;
-}
+} */
 
 .expand-content h3,
 .venue-info h3 {
