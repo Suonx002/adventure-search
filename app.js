@@ -5,18 +5,22 @@ const cityInput = document.querySelector('.city-input');
 const searchResults = document.querySelector('.search-results');
 let id = 0;
 
-// Search form listeners
-searchForm.addEventListener('submit', searchSubmit);
+//all event listeners function
 
-// Listener for expand button
-document.addEventListener('click', expandBtnClicked);
+function eventListeners() {
+  // Search form listeners
+  searchForm.addEventListener('submit', searchSubmit);
+  // Listener for expand button
+  document.addEventListener('click', expandBtnClicked);
+}
 
-//clear inputs
+//clear input field
 function clearInput() {
   document.querySelector('.search-input').value = '';
   document.querySelector('.city-input').value = '';
 }
 
+//Search data result within ticketmaster api
 function searchSubmit(e) {
   const api_key = 'iys9kXU5AGU12MWqoGc7LkpmZXDAhTkd';
   //cors
@@ -41,16 +45,19 @@ function searchSubmit(e) {
   e.preventDefault();
 }
 
+//ticket master api handling the results if success
 function apiDataResults(data) {
   clearInput();
   searchResults.style.display = 'block';
   let totalOutput = '';
+
   //clear html search
   searchResults.innerHTML = '';
 
   //loop through each search results
   data.forEach(artist => {
     console.log(artist);
+
     //lineup-content section
     const searchOutput = displaySearchInfo(artist);
 
@@ -60,115 +67,89 @@ function apiDataResults(data) {
     //venue details loop
     const venueOutput = displayVenueOutput(artist._embedded.venues[0]);
 
-    //combined all outputs
+    //combined output from searchOutput, artistOutput, and venueOutput
     const combinedOutput = combinedTotalOutput(
       searchOutput,
       artistOutput,
       venueOutput
     );
 
+    //combined all output
     totalOutput += combinedOutput;
   });
 
+  //insert all output to .search-results
   searchResults.insertAdjacentHTML('beforeend', totalOutput);
 }
 
-//Expand button
+//Expand button function
 function expandBtnClicked(e) {
   // for expand btn area
   if (e.target.classList.contains('expand-btn')) {
+    //select current id from .search-info section
     const currentId = e.target.parentNode.id;
+    //select all search-info sections
     const searchInfos = document.querySelectorAll('.search-info');
+    //loops all search-info sections and match current id with the section-info id
     searchInfos.forEach(item => {
       if (item.id === currentId) {
+        //finding section of expand section using event bubbling and delegation from expand-btn
         const expandContent = e.target.parentNode.nextSibling.nextSibling;
+        //finding section of venue section using event bubbling and delegation from expand-btn
         const venueContent =
           e.target.parentNode.nextSibling.nextSibling.nextSibling.nextSibling;
-        //expand content
-        if (expandContent.classList.contains('expand-content')) {
-          if (
-            expandContent.style.display === '' ||
-            expandContent.style.display === 'none'
-          ) {
-            expandContent.style.display = 'block';
-          } else {
-            expandContent.style.display = 'none';
-          }
-        }
-        if (venueContent.classList.contains('venue-content')) {
-          if (
-            venueContent.style.display === '' ||
-            venueContent.style.display === 'none'
-          ) {
-            venueContent.style.display = 'block';
-          } else {
-            venueContent.style.display = 'none';
-          }
-        }
-        e.preventDefault();
-
-        // e.target.parentNode.nextSibling.nextSibling;
-        // e.target.parentNode.nextSibling.nextSibling.nextSibling.nextSibling;
+        expandStyleDisplay(expandContent);
+        venueStyleDisplay(venueContent);
       }
     });
-
-    // console.log(
-    //   e.target.parentNode.nextSibling.nextSibling.nextSibling.nextSibling.style
-    //     .display
-    // );
+    e.preventDefault();
   }
 
   //for <a></a> tag inside expand btn (same logic)
   if (e.target.classList.contains('fa-chevron-down')) {
-    // console.log(
-    //   e.target.parentNode.parentNode.parentNode.nextSibling.nextSibling
-    // );
-    // console.log(
-    //   e.target.parentNode.parentNode.parentNode.nextSibling.nextSibling
-    //     .nextSibling.nextSibling
-    // );
     const currentId = e.target.parentNode.parentNode.parentNode.id;
     const searchInfos = document.querySelectorAll('.search-info');
     searchInfos.forEach(item => {
       if (item.id === currentId) {
-        //expand-content section
+        //finding section of expand section using event bubbling and delegation from expand-btn a tag
         const expandContent =
           e.target.parentNode.parentNode.parentNode.nextSibling.nextSibling;
+        //finding section of venue section using event bubbling and delegation from expand-btn a tag
         //venue-content section
         const venueContent =
           e.target.parentNode.parentNode.parentNode.nextSibling.nextSibling
             .nextSibling.nextSibling;
-
-        console.log(expandContent);
-        console.log(venueContent);
-        //expand content
-        if (expandContent.classList.contains('expand-content')) {
-          if (
-            expandContent.style.display === '' ||
-            expandContent.style.display === 'none'
-          ) {
-            expandContent.style.display = 'block';
-          } else {
-            expandContent.style.display = 'none';
-          }
-        }
-
-        if (venueContent.classList.contains('venue-content')) {
-          if (
-            venueContent.style.display === '' ||
-            venueContent.style.display === 'none'
-          ) {
-            venueContent.style.display = 'block';
-          } else {
-            venueContent.style.display = 'none';
-          }
-        }
+        expandStyleDisplay(expandContent);
+        venueStyleDisplay(venueContent);
       }
     });
     e.preventDefault();
   }
 }
 
+//function for handling '.expand-content' display
+function expandStyleDisplay(expand) {
+  if (expand.classList.contains('expand-content')) {
+    //if expand-content style display is empty, display as block;
+    //if expand-content style display is block, display as empty;
+    expand.style.display === ''
+      ? (expand.style.display = 'block')
+      : (expand.style.display = '');
+  }
+}
+
+//function for handling '.venue-content' display
+function venueStyleDisplay(venue) {
+  //if venue-content style display is empty, display as block;
+  //if venue-content style display is block, display as empty;
+  if (venue.classList.contains('venue-content')) {
+    venue.style.display === ''
+      ? (venue.style.display = 'block')
+      : (venue.style.display = '');
+  }
+}
+
+//display search info section
 function displaySearchInfo(artist) {
   //search info section of HTML
   //ex: 2019-11-11 split into array by '-' (year,month,day)
@@ -230,6 +211,7 @@ function displaySearchInfo(artist) {
   return output;
 }
 
+//artist output lineup function
 function displayArtistOutput(artist) {
   let output = '';
   artist.forEach(artistName => {
@@ -250,6 +232,7 @@ function displayArtistOutput(artist) {
   return output;
 }
 
+//venue output section function
 function displayVenueOutput(venue) {
   return `
       <div class="venue-info">
@@ -327,6 +310,7 @@ function displayVenueOutput(venue) {
     `;
 }
 
+//combined everything together
 function combinedTotalOutput(searchOutput, artistOutput, venueOutput) {
   id++;
   return `
@@ -347,3 +331,6 @@ function combinedTotalOutput(searchOutput, artistOutput, venueOutput) {
     </div>
   `;
 }
+
+// call all event listeners (init)
+eventListeners();
