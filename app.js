@@ -37,10 +37,12 @@ function searchSubmit(e) {
       .then(res => res.json())
       .then(data => apiDataResults(data._embedded.events))
       .catch(err => {
-        alert('There is no data with the following search...');
+        alert(
+          'There are no database results for this search. Please try again!'
+        );
       });
   } else {
-    alert('Please double check your typing...');
+    alert('Please double check search and city input!');
   }
   e.preventDefault();
 }
@@ -56,8 +58,6 @@ function apiDataResults(data) {
 
   //loop through each search results
   data.forEach(artist => {
-    console.log(artist);
-
     //lineup-content section
     const searchOutput = displaySearchInfo(artist);
 
