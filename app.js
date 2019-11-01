@@ -37,11 +37,13 @@ function searchSubmit(e) {
       .then(res => res.json())
       .then(data => apiDataResults(data._embedded.events))
       .catch(err => {
+        searchResults.style.display = 'none';
         alert(
           'There are no database results for this search. Please try again!'
         );
       });
   } else {
+    searchResults.style.display = 'none';
     alert('Please double check search and city input!');
   }
   e.preventDefault();

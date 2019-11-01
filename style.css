@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Raleway&display=swap');
 
 * {
   padding: 0;
@@ -23,7 +23,7 @@ h3 {
 }
 
 body {
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Raleway', sans-serif;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
