@@ -105,17 +105,19 @@ function expandBtnClicked(e) {
             venueContent.style.display = 'none';
           }
         }
+        e.preventDefault();
 
         // e.target.parentNode.nextSibling.nextSibling;
         // e.target.parentNode.nextSibling.nextSibling.nextSibling.nextSibling;
       }
     });
 
-    console.log(
-      e.target.parentNode.nextSibling.nextSibling.nextSibling.nextSibling.style
-        .display
-    );
+    // console.log(
+    //   e.target.parentNode.nextSibling.nextSibling.nextSibling.nextSibling.style
+    //     .display
+    // );
   }
+
   //for <a></a> tag inside expand btn (same logic)
   if (e.target.classList.contains('fa-chevron-down')) {
     // console.log(
@@ -129,11 +131,14 @@ function expandBtnClicked(e) {
     const searchInfos = document.querySelectorAll('.search-info');
     searchInfos.forEach(item => {
       if (item.id === currentId) {
+        //expand-content section
         const expandContent =
           e.target.parentNode.parentNode.parentNode.nextSibling.nextSibling;
+        //venue-content section
         const venueContent =
           e.target.parentNode.parentNode.parentNode.nextSibling.nextSibling
             .nextSibling.nextSibling;
+
         console.log(expandContent);
         console.log(venueContent);
         //expand content
@@ -158,10 +163,9 @@ function expandBtnClicked(e) {
             venueContent.style.display = 'none';
           }
         }
-        // e.target.parentNode.nextSibling.nextSibling;
-        // e.target.parentNode.nextSibling.nextSibling.nextSibling.nextSibling;
       }
     });
+    e.preventDefault();
   }
 }
 
