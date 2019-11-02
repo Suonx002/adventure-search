@@ -31,7 +31,7 @@ function searchSubmit(e) {
     cityInputLowerCase = cityInput.value.toLowerCase();
     //fetch data from ticketmaster api
     fetch(
-      `${cors}https://app.ticketmaster.com/discovery/v2/events.json?keyword=${searchInputLowerCase}&city=${cityInputLowerCase}&apikey=${api_key}`,
+      `${cors}https://app.ticketmaster.com/discovery/v2/events.json?keyword=${searchInputLowerCase}&city=${cityInputLowerCase}&sort=date,asc&apikey=${api_key}`,
       {}
     )
       .then(res => res.json())
